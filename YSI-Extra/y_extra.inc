@@ -5,8 +5,8 @@
 #endif
 
 // If you want to use y_extra, you need to use these (but nothing else).
-#include "..\YSI-Visual\y_commands"
-#include "..\YSI-Players\y_text"
+#include "..\YSI_Visual\y_commands"
+#include "..\YSI_Players\y_text"
 
 #if defined _inc_y_users
 	#include "extra\y_extra_users"
