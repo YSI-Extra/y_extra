@@ -1,7 +1,7 @@
-#if defined _INC_y_extra
+#if defined _INC_y_extra_languages
 	#endinput
 #endif
-#define _INC_y_extra
+#define _INC_y_extra_languages
 
 /*
 Legal:
@@ -75,23 +75,49 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 *//** */
 
-#tryinclude <sscanf2>
-#tryinclude <sscanf3>
+// Include pretty much 90% of YSI in one fell swoop!
 
-#if !defined sscanf || !defined WP_Hash
-	#error y_extra requires plugins - please install sscanf and whirlpool.
-#endif
+loadtext core[ysi_langs];
 
-// If you want to use y_extra, you need to use these (but nothing else).
-#include "..\..\YSI_Visual\y_commands"
-#include "..\..\YSI_Players\y_text"
-
-#if defined _INC_y_users
-	#include "y_extra_users"
-#endif
-
-// Don't need to check for y_languages being included as it's done by y_text.
-#include "y_extra_languages"
-
-#include "y_extra_other"
+YCMD:language(playerid, params[], help)
+{
+	if (help)
+	{
+		Text_Send(playerid, $YSI_LANGS_HELP);
+	}
+	else
+	{
+		new
+			lang;
+		if (sscanf(params, "i", lang))
+		{
+			new
+				c = _:Langs_GetLanguageCount(),
+				Language:i = Language:0;
+			while (c)
+			{
+				new
+					code[3];
+				strcpy(code, Langs_GetCode(i));
+				if (!isnull(code))
+				{
+					// They may not be in order.
+					Text_Send(playerid, $YSI_LANGS_DISP, _:i, Langs_GetName(i), code);
+					--c;
+				}
+				++i;
+			}
+			Text_Send(playerid, $YSI_LANGS_SET, YCMD:language);
+		}
+		else if (Langs_SetPlayerLanguage(playerid, Language:lang) == NO_LANGUAGE)
+		{
+			Text_Send(playerid, $YSI_LANGS_INV);
+		}
+		else
+		{
+			Text_Send(playerid, $YSI_LANGS_DONE, lang, Langs_GetName(Language:lang));
+		}
+	}
+	return 1;
+}
 

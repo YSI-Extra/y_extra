@@ -1,7 +1,7 @@
-#if defined _INC_y_extra
+#if defined _INC_y_extra_other
 	#endinput
 #endif
-#define _INC_y_extra
+#define _INC_y_extra_other
 
 /*
 Legal:
@@ -75,23 +75,45 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 *//** */
 
-#tryinclude <sscanf2>
-#tryinclude <sscanf3>
+// Include pretty much 90% of YSI in one fell swoop!
 
-#if !defined sscanf || !defined WP_Hash
-	#error y_extra requires plugins - please install sscanf and whirlpool.
-#endif
+loadtext core[ysi_commands], core[ysi_help];
 
-// If you want to use y_extra, you need to use these (but nothing else).
-#include "..\..\YSI_Visual\y_commands"
-#include "..\..\YSI_Players\y_text"
+YCMD:commands(playerid, params[], help)
+{
+    if (help)
+    {
+        Text_Send(playerid, $YSI_COMM_HELP);
+    }
+    else
+    {
+        new
+            count = Command_GetPlayerCommandCount(playerid);
+        for (new i = 0; i != count; ++i)
+        {
+            Text_Send(playerid, $YSI_COMM_LIST, Command_GetNext(i, playerid));
+        }
+    }
+    return 1;
+}
 
-#if defined _INC_y_users
-	#include "y_extra_users"
-#endif
-
-// Don't need to check for y_languages being included as it's done by y_text.
-#include "y_extra_languages"
-
-#include "y_extra_other"
+YCMD:help(playerid, params[], help)
+{
+    if (help)
+    {
+        Text_Send(playerid, $YSI_HELP);
+    }
+    else
+    {
+        if (isnull(params))
+        {
+            Text_Send(playerid, $YSI_HELP);
+        }
+        else
+        {
+            Command_ReProcess(playerid, params, true);
+        }
+    }
+    return 1;
+}
 
