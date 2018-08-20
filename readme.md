@@ -1,3 +1,40 @@
+# y_extra
+
+Extra features that some people do not want included by default for compatibility reasons such as the commands `/help` and `/commands`.
+
+
+[![sampctl](https://shields.southcla.ws/badge/sampctl-y_extra-2f2f2f.svg?style=for-the-badge)](https://github.com/YSI-Extra/y_extra)
+
+## Installation
+
+To install just this one library:
+
+```bash
+sampctl package install YSI-Extra/y_extra
+```
+
+Include in your code and begin using the library:
+
+```pawn
+#include <YSI-Extra/y_extra>
+```
+
+## Documentation
+
+* [Quick Start](YSI-Extra/y_extra/quick-start.md) - One very simple example of getting started with this library.
+* [Features](YSI-Extra/y_extra/features.md) - More features and examples.
+* [FAQs](YSI-Extra/y_extra/faqs.md) - Frequently Asked Questions, including errors and solutions.
+* [API](YSI-Extra/y_extra/api.md) - Full list of all functions and their meaning.
+* [Internal](YSI-Extra/y_extra/internal.md) - Internal developer documentation for the system.
+
+## Testing
+
+To test, simply run the package:
+
+```bash
+sampctl package run
+```
+
 # YSI
 
 ## General Information
@@ -109,34 +146,4 @@ Libraries that have in-game visible effects.
 * [y_races](https://github.com/YSI-Visual/y_races/blob/dev/YSI-Visual/y_races.md)
 * [y_zonenames](https://github.com/YSI-Visual/y_zonenames/blob/dev/YSI-Visual/y_zonenames.md)
 * [y_zonepulse](https://github.com/YSI-Visual/y_zonepulse/blob/dev/YSI-Visual/y_zonepulse.md)
-
-# y_extra
-
-[![sampctl](https://shields.southcla.ws/badge/sampctl-y_extra-2f2f2f.svg?style=for-the-badge)](https://github.com/YSI-Extra/y_extra)
-
-## Installation
-
-To install just this one library:
-
-```bash
-sampctl package install YSI-Extra/y_extra
-```
-
-Include in your code and begin using the library:
-
-```pawn
-#include <YSI-Extra/y_extra>
-```
-
-## Usage
-
-[Click Here] (YSI-Extra/y_extra.md)
-
-## Testing
-
-To test, simply run the package:
-
-```bash
-sampctl package run
-```
 
